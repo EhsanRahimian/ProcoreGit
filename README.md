@@ -1,6 +1,6 @@
 # ProcoreGit
 
-Github Challenge
+Github Challenge==>>
 Our team uses GitHub for our code repository and code review. 
 GitHub also allows you to follow your favorite open-source repositories to watch how the codebase is changing. 
 For this exercise, we’d like you to build an Android app that shows Pull Requests (PRs) on a given repo. 
@@ -21,6 +21,6 @@ We’ll look at your commit history to see your development story.
 
 We’re looking for/grading on your ability to:
 
-Interface with a REST API, given the docs
-Program a nice looking, compelling UI
+Interface with a REST API, given the docs/&/
+Program a nice looking, compelling UI/&/
 Handle any trickiness or math involved in a side-by-side diff GUI
