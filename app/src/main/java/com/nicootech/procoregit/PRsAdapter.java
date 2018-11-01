@@ -1,5 +1,7 @@
 package com.nicootech.procoregit;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import java.util.List;
 public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
 
     private List<Model>models;
+    private Context context;
     public PRsAdapter(List<Model>models)
     {
         this.models = models;
@@ -21,6 +24,8 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
     @NonNull
     @Override
     public MViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pulls_list,parent,false);
         return new MViewHolder(view);
     }
@@ -31,6 +36,15 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
         holder.id.setText("ID # "+models.get(i).getId());
         holder.number.setText("NUMBER # "+models.get(i).getNumber());
         holder.state.setText("STATE : "+models.get(i).getState());
+
+        holder.pulls_items.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,DiffActivity.class);
+
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -54,6 +68,7 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
             number = itemView.findViewById(R.id.layout_number);
             id = itemView.findViewById(R.id.layout_id);
             state = itemView.findViewById(R.id.layout_state);
+
         }
     }
 }
