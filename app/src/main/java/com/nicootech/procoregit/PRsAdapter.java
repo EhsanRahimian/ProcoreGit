@@ -28,9 +28,9 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MViewHolder holder, int i) {
         holder.title.setText("TITLE : "+models.get(i).getTitle());
-        holder.id.setText("ISSUE #"+models.get(i).getId());
-        holder.number.setText("ID #"+models.get(i).getNumber());
-        holder.state.setText("STATUS #"+models.get(i).getState());
+        holder.id.setText("ID # "+models.get(i).getId());
+        holder.number.setText("NUMBER # "+models.get(i).getNumber());
+        holder.state.setText("STATE : "+models.get(i).getState());
 
     }
 

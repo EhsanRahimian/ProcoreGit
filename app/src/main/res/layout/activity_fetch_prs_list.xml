@@ -10,8 +10,11 @@
     <TextView
         android:id="@+id/my_head_textView"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:textSize="30sp"
+        android:layout_height="48dp"
+        android:textColor="@android:color/black"
+        android:text="The List of Pull Requests for:
+ https://github.com/mgp25/Instagram-API "
+        android:textSize="18sp"
         android:textStyle="bold" />
 
 

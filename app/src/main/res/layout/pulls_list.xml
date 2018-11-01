@@ -2,45 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pulls_items"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:background="@android:color/holo_blue_light"
+    android:layout_height="150dp"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="4dp">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/Row"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@android:color/holo_blue_light"
+        android:orientation="vertical"
+        android:padding="8dp">
     <TextView
         android:id="@+id/layout_number"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="30dp"
         android:layout_gravity="start"
-        android:padding="10dp"
+        android:padding="5dp"
         android:text=""
         android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:gravity="center"
-        android:padding="10dp"
+        android:layout_height="30dp"
+        android:gravity="start"
+        android:padding="5dp"
         android:text=""
         android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
     <TextView
         android:id="@+id/layout_id"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:gravity="center"
-        android:padding="10dp"
+        android:layout_height="30dp"
+        android:gravity="start"
+        android:padding="5dp"
         android:text=""
         android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
     <TextView
         android:id="@+id/layout_state"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:gravity="center"
-        android:padding="10dp"
+        android:layout_height="30dp"
+        android:gravity="start"
+        android:padding="5dp"
         android:text=""
         android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
+</LinearLayout>
 </LinearLayout>
