@@ -15,7 +15,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FetchPRsList extends AppCompatActivity {
-    private TextView textView;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private PRsAdapter adapter;
