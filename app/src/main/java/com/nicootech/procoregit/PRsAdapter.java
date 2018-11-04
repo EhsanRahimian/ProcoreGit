@@ -16,8 +16,9 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
 
     private List<Model>models;
     private Context context;
-    public PRsAdapter(List<Model>models)
+    public PRsAdapter( Context context, List<Model>models)
     {
+        this.context = context;
         this.models = models;
     }
 

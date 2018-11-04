@@ -40,7 +40,7 @@ public class FetchPRsList extends AppCompatActivity {
             public void onResponse(Call<List<Model>> call, Response<List<Model>> response) {
 
                 models = response.body();
-                adapter = new PRsAdapter(models);
+                adapter = new PRsAdapter(getApplicationContext(), models);
                 recyclerView.setAdapter(adapter);
 
             }
