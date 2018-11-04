@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.nicootech.procoregit.Interface.ApiDiff;
 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +20,6 @@ import retrofit2.Response;
 public class DiffActivity extends AppCompatActivity {
     private RecyclerView diff_recycler_view;
     private String intentDiff;
-    private ApiDiffClient apiDiffClient;
     private ApiDiff apiDiff;
 
     @Override
@@ -32,8 +32,7 @@ public class DiffActivity extends AppCompatActivity {
         if(intent.getExtras()!=null)
             intentDiff = intent.getExtras().getString("diffUrlFromIntent");
 
-        apiDiffClient = (ApiDiffClient) ApiDiffClient.getApiDiffClient().create(ApiDiff.class);
-        apiDiff = (ApiDiff) ApiDiffClient.getApiDiffClient().create(ApiDiffClient.class);
+        apiDiff =  ApiDiffClient.getApiDiffClient().create(ApiDiff.class);
 
         Call<String> callDiff =apiDiff.getStringResponse(intentDiff);
         callDiff.enqueue(new Callback<String>() {
