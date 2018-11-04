@@ -12,6 +12,7 @@ import java.util.List;
 
 public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> {
     private List<String>cards;
+    private Context context;
 
     public DiffAdapter(Context context,List<String> cards) {
         this.context = context;
