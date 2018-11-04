@@ -2,6 +2,8 @@ package com.nicootech.procoregit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+
 
 public class ApiDiffClient {
     public static final String BASE_DIFF_URL = "https://github.com/";
@@ -12,7 +14,7 @@ public class ApiDiffClient {
         if(diffRetrofit==null)
         {
             diffRetrofit = new Retrofit.Builder().baseUrl(BASE_DIFF_URL).
-                    addConverterFactory(GsonConverterFactory.create())
+                    addConverterFactory(ScalarsConverterFactory.create())
                     .build();
         }
         return diffRetrofit;

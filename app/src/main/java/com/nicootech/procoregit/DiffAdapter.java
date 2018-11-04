@@ -1,5 +1,6 @@
 package com.nicootech.procoregit;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +13,8 @@ import java.util.List;
 public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> {
     private List<String>cards;
 
-    public DiffAdapter(List<String> cards) {
+    public DiffAdapter(Context context,List<String> cards) {
+        this.context = context;
         this.cards = cards;
     }
 
