@@ -13,12 +13,12 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+//////////////////////
+////////////////////
+///////////////////
 
 public class FetchPRsListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private PRsAdapter adapter;
-    private List<Model> models;
     private ApiPRs apiPRs;
 
     @Override
@@ -27,9 +27,6 @@ public class FetchPRsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fetch_prs_list);
 
         recyclerView = findViewById(R.id.my_recycler_view);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
 
 
         apiPRs = ApiClient.getApiClient().create(ApiPRs.class);
@@ -39,10 +36,8 @@ public class FetchPRsListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Model>> call, Response<List<Model>> response) {
 
-                models = response.body();
-                adapter = new PRsAdapter(getApplicationContext(), models);
-                recyclerView.setAdapter(adapter);
-
+                List<Model>models = response.body();
+                setRecyclerView(models);
             }
 
             @Override
@@ -51,6 +46,18 @@ public class FetchPRsListActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void setRecyclerView(List<Model>models)
+    {
+        RecyclerView.Adapter adapter;
+        RecyclerView.LayoutManager layoutManager;
+
+        adapter = new PRsAdapter(getApplicationContext(), models);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        recyclerView.setAdapter(adapter);
 
     }
 }

@@ -33,6 +33,9 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MViewHolder holder, int i) {
+
+        final Model currentListItem = models.get(i);
+
         holder.title.setText("TITLE : "+models.get(i).getTitle());
         holder.id.setText("ID # "+models.get(i).getId());
         holder.number.setText("NUMBER # "+models.get(i).getNumber());
@@ -42,6 +45,7 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,DiffActivity.class);
+                intent.putExtra("diffUrlFromIntent",extractPRs(currentListItem.getDiff_url()));
 
                 context.startActivity(intent);
             }
@@ -71,5 +75,9 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
             state = itemView.findViewById(R.id.layout_state);
 
         }
+    }
+    private String extractPRs(String str) {
+        String[] slashRemove = str.split("/");
+        return slashRemove[slashRemove.length - 1];
     }
 }

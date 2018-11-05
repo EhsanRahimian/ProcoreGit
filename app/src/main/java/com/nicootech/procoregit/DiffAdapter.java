@@ -16,8 +16,8 @@ import java.util.List;
 public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> {
     private List<String>cards;
 
-    public DiffAdapter(List<String>cards ){
-        this.cards=cards;
+    public DiffAdapter(List<String>diff_content ){
+        this.cards=diff_content;
     }
 
     @NonNull
@@ -26,7 +26,7 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> 
         View view = LayoutInflater.from(viewGroup.getContext()).
                 inflate(R.layout.show_diff, viewGroup,false);
 
-        return new MyViewHolder(view) ;
+        return new DiffAdapter.MyViewHolder(view) ;
     }
 
     @Override
@@ -59,6 +59,8 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> 
 
         String[] induvLineStrings = cards.get(position).split("\n");
         SpannableStringBuilder SBuilder = new SpannableStringBuilder();
+
+
         for(String curStr: induvLineStrings){
             SpannableString s = new SpannableString(curStr);
 

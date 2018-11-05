@@ -62,13 +62,13 @@ public class DiffActivity extends AppCompatActivity {
 
         RecyclerView.Adapter adapter;
         RecyclerView.LayoutManager layoutManager;
+
         adapter = new DiffAdapter(list);
-
-
-
         layoutManager = new LinearLayoutManager(this);
+
         diff_recycler.setLayoutManager(layoutManager);
         diff_recycler.setHasFixedSize(true);
+
         diff_recycler.setAdapter(adapter);
     }
 
