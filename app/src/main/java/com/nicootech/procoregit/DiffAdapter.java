@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 
+
 public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> {
     private List<String>cards;
 
