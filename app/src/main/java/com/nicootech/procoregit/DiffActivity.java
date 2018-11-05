@@ -5,72 +5,70 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
-
 import com.nicootech.procoregit.Interface.ApiDiff;
-
-
 import java.util.Arrays;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DiffActivity extends AppCompatActivity {
-    private RecyclerView diff_recycler_view;
-    private String intentDiff;
+    private RecyclerView diff_recycler;
     private ApiDiff apiDiff;
+    private String intentDiff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diff);
-        diff_recycler_view = findViewById(R.id.diff_recycler_view);
+        diff_recycler=findViewById(R.id.diff_recycler_view);
+
+        //make the request
+
 
         Intent intent = getIntent();
+
         if(intent.getExtras()!=null)
             intentDiff = intent.getExtras().getString("diffUrlFromIntent");
 
-        apiDiff =  ApiDiffClient.getApiDiffClient().create(ApiDiff.class);
+        apiDiff = ApiDiffClient.getApiDiffClient().create(ApiDiff.class);
 
-        Call<String> callDiff =apiDiff.getStringResponse(intentDiff);
-        callDiff.enqueue(new Callback<String>() {
+        Call<String> diffCall = apiDiff.getStringResponse(intentDiff);
+        diffCall.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<String> diffCall, Response<String> response) {
                 if(response.isSuccessful()){
-                    String responseString =  response.body();
+                    String responseString= response.body();
                     if(responseString !=null)
                         setRecyclerView(stringProcess(responseString));
+                }
+
             }
 
-
-        }
-
             @Override
-            public void onFailure(Call<String> call, Throwable t) {}
+            public void onFailure(Call<String> diffCall, Throwable t) {
 
-            });
+            }
+        });
 
     }
-        private List<String> stringProcess(String responseString) {
-            String[] parts = responseString.trim().split("diff---git");
-            return Arrays.asList(parts);
-        }
-        private void setRecyclerView(List<String> diffList) {
-            RecyclerView.Adapter diffAdapter;
-            RecyclerView.LayoutManager layoutManager;
+    private List<String> stringProcess(String responseString) {
+        String[] parts = responseString.trim().split("diff---git");
+        return Arrays.asList(parts);
+    }
+    private void setRecyclerView(List<String>list){
 
-            diffAdapter = new DiffAdapter(getApplicationContext(),diffList);
-            layoutManager = new LinearLayoutManager(this);
-
-            diff_recycler_view.setLayoutManager(layoutManager);
-            diff_recycler_view.setHasFixedSize(true);
-
-            diff_recycler_view.setAdapter(diffAdapter);
+        RecyclerView.Adapter adapter;
+        RecyclerView.LayoutManager layoutManager;
+        adapter = new DiffAdapter(list);
 
 
 
-        }
+        layoutManager = new LinearLayoutManager(this);
+        diff_recycler.setLayoutManager(layoutManager);
+        diff_recycler.setHasFixedSize(true);
+        diff_recycler.setAdapter(adapter);
+    }
 
 }
