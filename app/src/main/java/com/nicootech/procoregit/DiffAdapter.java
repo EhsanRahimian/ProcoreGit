@@ -1,6 +1,5 @@
 package com.nicootech.procoregit;
 
-
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -11,9 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 
-
-
 public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> {
+
     private List<String>cards;
 
     public DiffAdapter(List<String>diff_content ){

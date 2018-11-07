@@ -5,8 +5,7 @@ import com.nicootech.procoregit.Model;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface ApiPRs {
-
+public interface ApiPRsInterface {
     @GET("pulls")
     Call<List<Model>> getPRsList();
 }

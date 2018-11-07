@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import com.nicootech.procoregit.Interface.ApiDiff;
+import com.nicootech.procoregit.Interface.ApiDiffInterface;
 import java.util.Arrays;
 import java.util.List;
 import retrofit2.Call;
@@ -15,7 +15,7 @@ import retrofit2.Response;
 
 public class DiffActivity extends AppCompatActivity {
     private RecyclerView diff_recycler;
-    private ApiDiff apiDiff;
+    private ApiDiffInterface apiDiff;
     private String intentDiff;
 
     @Override
@@ -25,7 +25,7 @@ public class DiffActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diff);
         diff_recycler=findViewById(R.id.diff_recycler_view);
 
-        //make the request
+        //making the request
 
 
         Intent intent = getIntent();
@@ -33,12 +33,13 @@ public class DiffActivity extends AppCompatActivity {
         if(intent.getExtras()!=null)
             intentDiff = intent.getExtras().getString("diffUrlFromIntent");
 
-        apiDiff = ApiDiffClient.getApiDiffClient().create(ApiDiff.class);
+        apiDiff = ApiDiffClient.getApiDiffClient().create(ApiDiffInterface.class);
 
         Call<String> diffCall = apiDiff.getStringResponse(intentDiff);
         diffCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> diffCall, Response<String> response) {
+
                 if(response.isSuccessful()){
                     String responseString= response.body();
                     if(responseString !=null)
@@ -51,11 +52,12 @@ public class DiffActivity extends AppCompatActivity {
             public void onFailure(Call<String> diffCall, Throwable t) {
 
             }
+
         });
 
     }
     private List<String> stringProcess(String responseString) {
-        String[] parts = responseString.trim().split("diff---git");
+        String[] parts = responseString.trim().split("diff --git");
         return Arrays.asList(parts);
     }
     private void setRecyclerView(List<String>list){

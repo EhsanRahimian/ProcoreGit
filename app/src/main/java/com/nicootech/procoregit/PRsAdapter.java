@@ -9,26 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.List;
 
 public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
 
     private List<Model>models;
     private Context context;
-    public PRsAdapter( Context context, List<Model>models)
+
+    public PRsAdapter( Context currentContext, List<Model>prListFromActivity)
     {
-        this.context = context;
-        this.models = models;
+        context = currentContext;
+        this.models = prListFromActivity;
     }
 
     @NonNull
     @Override
-    public MViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    public PRsAdapter.MViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.pulls_list, parent, false);
 
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pulls_list,parent,false);
-        return new MViewHolder(view);
+        return new PRsAdapter.MViewHolder(view);
     }
 
     @Override
@@ -36,10 +37,10 @@ public class PRsAdapter extends RecyclerView.Adapter<PRsAdapter.MViewHolder> {
 
         final Model currentListItem = models.get(i);
 
-        holder.title.setText("TITLE : "+models.get(i).getTitle());
-        holder.id.setText("ID # "+models.get(i).getId());
-        holder.number.setText("NUMBER # "+models.get(i).getNumber());
-        holder.state.setText("STATE : "+models.get(i).getState());
+        holder.title.setText("TITLE : "+currentListItem.getTitle());
+        holder.id.setText("ID # "+currentListItem.getId());
+        holder.number.setText("NUMBER # "+currentListItem.getNumber());
+        holder.state.setText("STATE : "+currentListItem.getState());
 
         holder.pulls_items.setOnClickListener(new View.OnClickListener() {
             @Override
