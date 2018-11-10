@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -22,6 +23,9 @@ public class DiffActivity extends AppCompatActivity {
     private FrameLayout rightText;
     private ApiDiffInterface apiDiff;
     private String intentDiff;
+    private static final int TYPE_DEFAULT = 0;
+    private static final int TYPE_REMOVE = 1;
+    private static final int TYPE_ADD = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +67,21 @@ public class DiffActivity extends AppCompatActivity {
         });
 
     }
-    private List<String> stringProcess(String responseString) {
-        String[] parts = responseString.trim().split("@@");
-        return Arrays.asList(parts);
-    }
-    private void setRecyclerView(List<String>list){
+    private void getLinesForView(boolean left, String result) {
+        if (result == null) return;
+        String[] lines = result.split("\n");
+        if (lines.length > 0) {
+            for (String line : lines) {
+                int type = TYPE_DEFAULT;
+                if (line.trim().startsWith("+")) {
+                    type = TYPE_ADD;
+                } else if (line.trim().startsWith("-")) {
+                    type = TYPE_REMOVE;
+                }
 
-        RecyclerView.Adapter adapter;
-        RecyclerView.LayoutManager layoutManager;
 
-        adapter = new DiffAdapter(list);
-        layoutManager = new LinearLayoutManager(this);
-
-        //diff_recycler.setLayoutManager(layoutManager);
-       // diff_recycler.setHasFixedSize(true);
-
-       // diff_recycler.setAdapter(adapter);
+            }
+        }
     }
 
 }

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import java.util.*;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> 
     public DiffAdapter(List<String>diff_content ){
         this.cards=diff_content;
     }
-
     @NonNull
     @Override
     public DiffAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -53,19 +53,35 @@ public class DiffAdapter extends RecyclerView.Adapter<DiffAdapter.MyViewHolder> 
 
     }
 
-    private SpannableStringBuilder stringProcess(int position){
-
-        String[] induvLineStrings = cards.get(position).split("\n");
+   /* private SpannableStringBuilder stringProcess(int position){
+        String[] individualLineStrings = cards.get(position).split("\n");
         SpannableStringBuilder SBuilder = new SpannableStringBuilder();
-
-
-        for(String curStr: induvLineStrings){
+        for(String curStr: individualLineStrings){
             SpannableString s = new SpannableString(curStr);
-
             SBuilder.append(s);
             SBuilder.append("\n");
         }
         return SBuilder;
     }
+    */
+   private  StringBuffer stringProcess(int position) {
+
+       String[] individualLineStrings = cards.get(position).split("\n");
+
+       StringBuffer SBuffer = new StringBuffer();
+
+       for (String curStr : individualLineStrings) {
+
+           if (curStr != null && curStr.length() > 0 && curStr.charAt(0) != '+') {
+               String s = new String(curStr);
+               SBuffer.append(s);
+               SBuffer.append("\n");
+           }
+
+       }
+       return SBuffer;
+
+   }
+
 
 }
