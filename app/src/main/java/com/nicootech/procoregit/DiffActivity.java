@@ -65,12 +65,14 @@ public class DiffActivity extends AppCompatActivity {
         if (result == null) return;
         String[] lines = result.split("\n");
         if (lines.length > 0) {
+            int type;
             for (String line : lines) {
-                int type = TYPE_DEFAULT;
                 if (line.trim().startsWith("+")) {
                     type = TYPE_ADD;
                 } else if (line.trim().startsWith("-")) {
                     type = TYPE_REMOVE;
+                } else {
+                    type = TYPE_DEFAULT;
                 }
                 if (left) {
                     if (type != TYPE_ADD) {
