@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nicootech.procoregit.Interface.ApiDiffInterface;
 import java.util.Arrays;
@@ -52,9 +53,10 @@ public class DiffActivity extends AppCompatActivity {
             public void onResponse(Call<String> diffCall, Response<String> response) {
 
                 if(response.isSuccessful()){
-                    String responseString= response.body();
-                    if(responseString !=null)
-                        setRecyclerView(stringProcess(responseString));
+
+                    String responseString = response.body();
+                    getLinesForView(true, responseString);
+                    getLinesForView(false, responseString);
                 }
 
             }
@@ -82,6 +84,24 @@ public class DiffActivity extends AppCompatActivity {
 
             }
         }
+    }
+    private TextView addLineAsTextView(int type, String line) {
+
+        TextView tv = new TextView(this);
+        tv.setText(line);
+        tv.setPadding(10, 0, 0, 10);
+
+        switch (type) {
+            case TYPE_ADD:
+                tv.setBackgroundResource(R.color.colorAccent);
+                break;
+            case TYPE_REMOVE:
+                tv.setBackgroundResource(R.color.colorPrimary);
+                break;
+            case TYPE_DEFAULT:
+                break;
+        }
+        return tv;
     }
 
 }
