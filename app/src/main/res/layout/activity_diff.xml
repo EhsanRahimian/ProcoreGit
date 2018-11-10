@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <FrameLayout
+        <LinearLayout
             android:orientation="vertical"
             android:id="@+id/list_diff_left"
             android:layout_width="0dp"
@@ -19,7 +19,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <FrameLayout
+        <LinearLayout
             android:orientation="vertical"
             android:id="@+id/list_diff_right"
             android:layout_width="0dp"

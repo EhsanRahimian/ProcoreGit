@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nicootech.procoregit.Interface.ApiDiffInterface;
@@ -15,8 +16,8 @@ import retrofit2.Response;
 
 public class DiffActivity extends AppCompatActivity {
 
-    private FrameLayout leftText;
-    private FrameLayout rightText;
+    private LinearLayout leftText;
+    private LinearLayout rightText;
     private ApiDiffInterface apiDiff;
     private String intentDiff;
     private static final int TYPE_DEFAULT = 0;
