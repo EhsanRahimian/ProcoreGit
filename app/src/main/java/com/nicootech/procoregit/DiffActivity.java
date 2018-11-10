@@ -3,23 +3,18 @@ package com.nicootech.procoregit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nicootech.procoregit.Interface.ApiDiffInterface;
-import java.util.Arrays;
-import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class DiffActivity extends AppCompatActivity {
-    //private RecyclerView diff_recycler;
+
     private FrameLayout leftText;
     private FrameLayout rightText;
     private ApiDiffInterface apiDiff;
@@ -33,12 +28,8 @@ public class DiffActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diff);
-        //diff_recycler=findViewById(R.id.diff_recycler_view);
         rightText = findViewById(R.id.list_diff_right);
         leftText = findViewById(R.id.list_diff_left);
-
-        //making the request
-
 
         Intent intent = getIntent();
 
@@ -80,10 +71,19 @@ public class DiffActivity extends AppCompatActivity {
                 } else if (line.trim().startsWith("-")) {
                     type = TYPE_REMOVE;
                 }
-
+                if (left) {
+                    if (type != TYPE_ADD) {
+                        leftText.addView(addLineAsTextView(type, line.trim()));
+                    }
+                } else {
+                    if (type != TYPE_REMOVE) {
+                        rightText.addView(addLineAsTextView(type, line.trim()));
+                    }
+                }
 
             }
         }
+        Log.i("ehsan", result);
     }
     private TextView addLineAsTextView(int type, String line) {
 
