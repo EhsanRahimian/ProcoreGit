@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
 import com.nicootech.procoregit.Interface.ApiDiffInterface;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +17,9 @@ import retrofit2.Response;
 
 
 public class DiffActivity extends AppCompatActivity {
-    private RecyclerView diff_recycler;
+    //private RecyclerView diff_recycler;
+    private FrameLayout leftText;
+    private FrameLayout rightText;
     private ApiDiffInterface apiDiff;
     private String intentDiff;
 
@@ -23,7 +28,9 @@ public class DiffActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diff);
-        diff_recycler=findViewById(R.id.diff_recycler_view);
+        //diff_recycler=findViewById(R.id.diff_recycler_view);
+        rightText = findViewById(R.id.list_diff_right);
+        leftText = findViewById(R.id.list_diff_left);
 
         //making the request
 
@@ -57,7 +64,7 @@ public class DiffActivity extends AppCompatActivity {
 
     }
     private List<String> stringProcess(String responseString) {
-        String[] parts = responseString.trim().split("diff --git");
+        String[] parts = responseString.trim().split("@@");
         return Arrays.asList(parts);
     }
     private void setRecyclerView(List<String>list){
@@ -68,10 +75,10 @@ public class DiffActivity extends AppCompatActivity {
         adapter = new DiffAdapter(list);
         layoutManager = new LinearLayoutManager(this);
 
-        diff_recycler.setLayoutManager(layoutManager);
-        diff_recycler.setHasFixedSize(true);
+        //diff_recycler.setLayoutManager(layoutManager);
+       // diff_recycler.setHasFixedSize(true);
 
-        diff_recycler.setAdapter(adapter);
+       // diff_recycler.setAdapter(adapter);
     }
 
 }
